@@ -1,0 +1,58 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+# scalar NumberDecimalType
+
+type Query {
+  record(id: ID!): Record
+  records(limit: Int, offset: Int): [Record]
+}
+
+type Mutation {
+  createRecord(
+    name: String
+    summary: String
+    images: ImagesInput
+    address: AddressInput
+  ): Record
+  deleteRecord(id: ID!): Boolean
+  updateRecord(id: ID!, name: String, position: String, level: String): Record
+}
+
+type Record {
+  id: ID
+  name: String
+  images: Images
+  summary: String
+  address: Address
+  # price: NumberDecimalType
+}
+
+input RecordInput {
+  id: ID
+  name: String
+  images: ImagesInput
+  summary: String
+  address: AddressInput
+  # price: NumberDecimalType
+}
+
+type Images {
+  picture_url: String
+}
+
+input ImagesInput {
+  picture_url: String
+}
+
+type Address {
+  market: String
+  country: String
+}
+
+input AddressInput {
+  market: String
+  country: String
+}

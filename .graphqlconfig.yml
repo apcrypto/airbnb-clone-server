@@ -1,0 +1,12 @@
+projects:
+  airbnbclone:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/schema.graphql
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/api.ts
+        docsFilePath: src
